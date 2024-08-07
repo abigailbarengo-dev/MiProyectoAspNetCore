@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Tp_Barengo.Models.Dato>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>¡Bienvenido a mi ABM!</h1>
+
+
+<form asp-controller="Dato" asp-action="Index"> <!-- formulario Listar libros -->
+    <p>
+        <h5>Búsqueda de obra por título</h5>
+        <input type="text" name="Listar" class="form-text" />
+        <input type="button" value="Buscar" class="btn btn-warning" />
+    </p>
+
+</form>
+
+<h3> Lista de libros </h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Editorial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ubicacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Copias)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Editorial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ubicacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Copias)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar datos</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Borrar libro</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Agregar libro</a>
+</p>
